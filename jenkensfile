@@ -1,29 +1,44 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.14.2-alpine3.23'
-        }
+    agent any
+
+    tools {
+        maven 'maven3.9.11'  // Make sure this matches your Jenkins Maven installation
+    }
+
+    environment {
+        SONAR_HOST_URL = 'http://localhost:9000' // Your SonarQube server
     }
 
     stages {
-        stage('Build') {
+
+        stage('Git Clone') {
             steps {
-                sh 'python --version'
+                git branch: 'main',
+                    url: 'https://github.com/Harunaissahaku/jomacs_web-apps.git'
             }
         }
 
-        stage('Test') {
+        stage('Build & Test') {
             steps {
-                echo 'Running tests...'
-                sh '''
-                    python --version
-                    # example test commands
-                    python -c "print('Tests executed successfully')"
-                    # replace with real tests, e.g.:
-                    # python -m unittest
-                    # pytest
-                '''
+                sh 'mvn clean verify'
             }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Build and SonarQube analysis successful'
+        }
+        failure {
+            echo '❌ Build or SonarQube analysis failed'
         }
     }
 }
