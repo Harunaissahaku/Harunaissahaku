@@ -1,9 +1,28 @@
 pipeline {
-    agent { docker { image 'python:3.14.2-alpine3.23' } }
+    agent {
+        docker {
+            image 'python:3.14.2-alpine3.23'
+        }
+    }
+
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
                 sh 'python --version'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh '''
+                    python --version
+                    # example test commands
+                    python -c "print('Tests executed successfully')"
+                    # replace with real tests, e.g.:
+                    # python -m unittest
+                    # pytest
+                '''
             }
         }
     }
