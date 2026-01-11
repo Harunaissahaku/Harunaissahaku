@@ -1,30 +1,27 @@
+
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="
            http://maven.apache.org/POM/4.0.0
            http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <!-- ===================== -->
-    <!-- PROJECT COORDINATES -->
-    <!-- ===================== -->
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project Coordinates -->
     <groupId>com.mt</groupId>
     <artifactId>maven-web-application</artifactId>
     <version>3.5.3-SNAPSHOT</version>
     <packaging>war</packaging>
-
-    <name>maven-web-application</name>
-    <description>Maven Web Project for Java Project</description>
+    <name>my-web-app</name>
+    <description>Maven Web Project for Java</description>
 
     <organization>
         <name>JOMACS IT SOLUTIONS</name>
         <url>http://jomacsit.com</url>
     </organization>
 
-    <!-- ===================== -->
-    <!-- PROPERTIES -->
-    <!-- ===================== -->
+    <!-- Properties -->
     <properties>
         <java.version>1.8</java.version>
         <spring.version>5.1.2.RELEASE</spring.version>
@@ -33,11 +30,8 @@
         <sonar.host.url>http://localhost:9000</sonar.host.url>
     </properties>
 
-    <!-- ===================== -->
-    <!-- DEPENDENCIES -->
-    <!-- ===================== -->
+    <!-- Dependencies -->
     <dependencies>
-
         <!-- JSON -->
         <dependency>
             <groupId>org.json</groupId>
@@ -51,22 +45,19 @@
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -74,7 +65,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
             <scope>provided</scope>
         </dependency>
 
@@ -85,24 +76,19 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
-    <!-- ===================== -->
-    <!-- BUILD (ONLY ONE!) -->
-    <!-- ===================== -->
+    <!-- Build -->
     <build>
-        <finalName>web-app</finalName>
+        <finalName>my-web-app</finalName>
 
         <plugins>
-
             <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -121,21 +107,17 @@
                 <version>9.2.11.v20150529</version>
             </plugin>
 
-            <!-- SonarQube Maven Plugin (WORKING) -->
+            <!-- SonarQube -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
+                <version>4.4.2.2413</version>
             </plugin>
-
         </plugins>
     </build>
 
-    <!-- ===================== -->
-    <!-- NEXUS DEPLOYMENT -->
-    <!-- ===================== -->
+    <!-- Nexus Deployment -->
     <distributionManagement>
-
         <repository>
             <id>nexus</id>
             <name>JOMACS Releases Repository</name>
@@ -147,7 +129,5 @@
             <name>JOMACS Snapshot Repository</name>
             <url>http://172.31.21.35:8081/repository/gtb-snapshot/</url>
         </snapshotRepository>
-
     </distributionManagement>
-
 </project>
