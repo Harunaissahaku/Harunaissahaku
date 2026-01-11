@@ -7,7 +7,6 @@ pipeline {
 
     environment {
         SONAR_HOST_URL = 'http://localhost:9000'
-        SONAR_TOKEN = credentials('jenkins_token') // Jenkins secret token
     }
 
     stages {
