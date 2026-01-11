@@ -11,13 +11,6 @@ pipeline {
 
     stages {
 
-        stage('Git Clone') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/Harunaissahaku/jomacs_web-apps.git'
-            }
-        }
-
         stage('Build & Test') {
             steps {
                 sh 'mvn clean verify'
